@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sufiyan Sikander - AI Engineer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap">
+    <!-- Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Scroll Progress Line -->
+    <div class="scroll-progress" role="progressbar" aria-label="Scroll progress" aria-valuemin="0" aria-valuemax="100"></div>
+    
+    <!-- Loading Animation -->
+    <div class="loading-animation" role="progressbar" aria-label="Loading portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="loader"></div>
+        <div class="loading-progress">
+            <div class="progress-bar"></div>
+        </div>
+        <p>Loading Portfolio...</p>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" aria-label="Toggle theme" tabindex="0">
+        <i class="fas fa-sun" aria-hidden="true"></i>
+        <i class="fas fa-moon" aria-hidden="true"></i>
+    </button>
+
+    <!-- Matrix-like background -->
+    <div class="matrix-bg" id="matrix-bg" aria-hidden="true"></div>
+
+    <!-- 3D Logo Canvas -->
+    <div class="logo-3d-container" aria-hidden="true">
+        <canvas id="logo-3d-canvas"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-content">
+            <div class="logo" role="banner">Sufiyan Sikander<span class="logo-dot"></span></div>
+            <div class="mobile-menu-toggle" aria-label="Toggle menu" tabindex="0">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#home" role="menuitem" tabindex="0">Home</a></li>
+                <li role="none"><a href="#about" role="menuitem" tabindex="0">About</a></li>
+                <li role="none"><a href="#projects" role="menuitem" tabindex="0">Projects</a></li>
+                <li role="none"><a href="#skills" role="menuitem" tabindex="0">Skills</a></li>
+                <li role="none"><a href="#certifications" role="menuitem" tabindex="0">Certifications</a></li>
+                <li role="none"><a href="#contact" role="menuitem" tabindex="0">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-greeting">Hello, I'm</div>
+            <h1>Sufiyan Sikander</h1>
+            <h2 id="hero-role"></h2>
+            <p class="hero-text" style="opacity:0">Building production-ready AI systems and intelligent applications using Generative AI, Large Language Models (LLMs), Agentic AI frameworks, RAG pipelines, and MCP-based tool integration. Focused on applied Machine Learning and real-world AI solutions.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn primary">View My Work</a>
+                <a href="#contact" class="btn secondary">Get in Touch</a>
+            </div>
+            <div class="tech-stack-hero">
+                <span>Python</span>
+                <span>TensorFlow</span>
+                <span>PyTorch</span>
+                <span>AWS</span>
+                <span>NLP</span>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="code-snippet">
+                <pre><code>def build_ai_solution():
+    model = Transformer(
+        layers=12,
+        heads=8,
+        d_model=768
+    )
+    return model.predict(
+        input_data,
+        confidence=0.95
+    )</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="about-intro">Hey 👋🏼 I'm Sufyan Sikander, an AI Engineer based in Karachi 🇵🇰, passionate about building intelligent systems and scalable AI-powered applications that solve real-world problems.</p>
+                <p class="about-experience">I specialize in Artificial Intelligence, Machine Learning, Natural Language Processing, and Computer Vision, with hands-on experience in developing full-stack AI solutions using technologies like Python, FastAPI, React.js, TensorFlow, LangChain, Pinecone, Hugging Face, and OpenCV.</p>
+                <p class="about-achievements">I've worked on multiple impactful projects, including TrafficGPT — an AI-powered traffic assistant featuring chat support, challan calculation, license guidance, and real-time traffic/weather alerts. I also developed SmartGuard, an AI humanoid security robot with real-time face recognition and autonomous movement, along with ANN-based analytics systems for customer prediction and business insights.</p>
+                <p class="about-personal">Alongside my projects, I've gained industry experience as an AI Intern at E-services and Technologies, where I worked on Docker environments, authentication systems, chat modules, and AI research. I've also worked as an AI STEM Instructor at Align STEM Club, conducting AI and robotics workshops while mentoring students in Custom GPTs, robotics, and computer vision technologies.</p>
+                <p class="current-progress">Currently, I'm focused on building Agentic AI systems and exploring MCP (Model Context Protocol) Servers to create more scalable and autonomous AI ecosystems.</p>
+                <div class="about-cta">
+                    <a href="#contact" class="btn">Let's Connect <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey">
+        <div class="section-title">
+            <h2>My Journey</h2>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AI Intern</h3>
+                        <h4>E-services and Technologies</h4>
+                        <p class="timeline-date">Feb 2026 - May 2026</p>
+                        <ul>
+                            <li>Set up Docker environment; built landing, onboarding, and authentication with email verification.</li>
+                            <li>Developed school chat module with user search.</li>
+                            <li>Conducted AI-Mustaqbil Hackathon evaluation, researched OpenAI Agent SDK, and represented Streams Academy Pvt Ltd at KIBTF 2026 Expo Centre.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AI STEM Instructor</h3>
+                        <h4>Align STEM Club</h4>
+                        <p class="timeline-date">Sep 2025 - Nov 2025</p>
+                        <ul>
+                            <li>Conducted AI & robotics workshops across multiple schools as AI STEM Engineer.</li>
+                            <li>Mentored students in Custom GPTs, emotion detection, Micro:bit programming, and Tello drones.</li>
+                            <li>Volunteered at Robofest (Beaconhouse by TechTics Club), supervising LFR competitions and supporting event execution.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+
+        <!-- PROJECT 1: ShurukerAi-FYP -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">
+                    <i class="fas fa-microphone-alt"></i>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">ShurukerAi-FYP</h3>
+                <p class="project-description">ShurukerAi is a full-stack AI-powered business intelligence and freelancing platform built with FastAPI and React.js. It combines Retrieval-Augmented Generation (RAG), real-time Firebase services, and vector search using Pinecone to deliver an intelligent ecosystem for startup insights, AI chat assistance, freelancer onboarding, and client–freelancer communication. The system enables users to interact with an AI business assistant, explore market trends across cities in Pakistan, evaluate business probabilities, and connect directly with verified freelancers through a structured marketplace. The backend is deployed on Hugging Face using FastAPI, while the frontend is deployed on Vercel for fast and scalable delivery.</p>
+                <div class="project-features">
+                    <ul>
+                        <li>FastAPI backend optimized for high-performance AI inference and API handling</li>
+                        <li>React.js frontend with responsive UI and dynamic state management</li>
+                        <li>LangChain-based RAG pipeline for document retrieval and response generation</li>
+                        <li>Pinecone vector database for semantic search and context retrieval</li>
+                        <li>Firebase (Auth, Firestore, Storage) for identity, chat, and data persistence</li>
+                        <li>Deployed on Hugging Face (backend) and Vercel (frontend) for production scalability</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>FastAPI</span>
+                    <span>React.js</span>
+                    <span>LangChain</span>
+                    <span>Pinecone</span>
+                    <span>Firebase</span>
+                    <span>Gemini AI</span>
+                    <span>Hugging Face</span>
+                    <span>Vercel</span>
+                </div>
+                <a href="https://shurukerai.vercel.app/" target="_blank" class="project-link">
+                    View Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJECT 2: Traffic-GPT -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">
+                    <i class="fas fa-traffic-light"></i>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Traffic-GPT</h3>
+                <p class="project-description">Traffic GPT is a full-stack AI-powered assistant designed for intelligent traffic management and civic information services in Pakistan. It enables users to interact with an AI chatbot for traffic-related queries, challan calculations, driving license information, accident statistics, and real-time alerts. The system combines a React.js frontend with a FastAPI backend powered by AI/ML models for conversational intelligence and data-driven insights. It leverages LangChain, Pinecone, and Hugging Face for retrieval-augmented generation and semantic search over traffic and transportation datasets.</p>
+                <div class="project-features">
+                    <ul>
+                        <li>FastAPI backend for high-performance API handling and AI inference</li>
+                        <li>React.js frontend with responsive UI and dynamic dashboard visualization</li>
+                        <li>LangChain-powered conversational AI for traffic-related queries</li>
+                        <li>Pinecone vector database for semantic search and contextual retrieval</li>
+                        <li>Hugging Face integration for model inference and AI response generation</li>
+                        <li>City-wise analytics and traffic intelligence system for Pakistan</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>LangChain</span>
+                    <span>FastAPI</span>
+                    <span>React.js</span>
+                    <span>Pinecone</span>
+                    <span>Hugging Face</span>
+                    <span>Chart.js</span>
+                    <span>Vercel</span>
+                    <span>Railway</span>
+                </div>
+                <a href="https://traffic-gpt.vercel.app/" target="_blank" class="project-link">
+                    View Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJECT 3: AI Content Summarizer -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">AI Content Summarizer</h3>
+                <p class="project-description">URL Content Summarizer is a lightweight AI-powered web application that extracts and summarizes content from YouTube videos and web URLs. It is built using Flask and LangChain with Groq's Llama-3.1-8B Instant model to generate high-quality structured summaries. The system supports multi-format outputs including detailed English summaries, key bullet points, Urdu translations, and timestamps for videos. It uses intelligent document loading and chunking to handle long-form content efficiently.</p>
+                <div class="project-features">
+                    <ul>
+                        <li>Flask backend for handling API requests and serving web interface</li>
+                        <li>LangChain-based summarization pipeline using map-reduce strategy</li>
+                        <li>Groq Llama-3.1-8B Instant model for fast and efficient inference</li>
+                        <li>YouTube transcript extraction using YoutubeLoader</li>
+                        <li>Web content extraction using UnstructuredURLLoader</li>
+                        <li>Support for English summary, key points, and Urdu translation output</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>LangChain</span>
+                    <span>Groq</span>
+                    <span>Llama 3.1</span>
+                    <span>Hugging Face</span>
+                    <span>Jinja2</span>
+                    <span>YouTube Transcript API</span>
+                </div>
+                <a href="https://huggingface.co/spaces/sufiyansikander01/text-summarizer" target="_blank" class="project-link">
+                    View Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJECT 4: Text To Math -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Text To Math Problem Solver</h3>
+                <p class="project-description">Text To Math is an AI-powered reasoning assistant that converts natural language questions into mathematical solutions. Built with Streamlit and LangChain, it uses Groq's Llama-3.1-8B Instant model combined with a ReAct agent to intelligently select between a calculator, Wikipedia search, and a reasoning chain to answer complex math and logic problems step by step.</p>
+                <div class="project-features">
+                    <ul>
+                        <li>LangChain ReAct agent with dynamic tool selection</li>
+                        <li>Calculator tool using numexpr for safe numeric expression evaluation</li>
+                        <li>Wikipedia search tool for factual context and knowledge retrieval</li>
+                        <li>LLMChain-based reasoning tool for multi-step logic problems</li>
+                        <li>Streamlit chat interface with persistent session history</li>
+                        <li>Groq Llama-3.1-8B Instant for fast low-latency inference</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>Streamlit</span>
+                    <span>LangChain</span>
+                    <span>Groq</span>
+                    <span>Llama 3.1</span>
+                    <span>Wikipedia API</span>
+                    <span>Numexpr</span>
+                    <span>ReAct Agent</span>
+                </div>
+                <a href="#" target="_blank" class="project-link">
+                    View Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJECT 5: Customer Churn Prediction -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Customer Churn Prediction App</h3>
+                <p class="project-description">Customer Churn Prediction is an AI-powered machine learning web application that predicts whether a bank customer is likely to leave the service. It is built using Streamlit for the frontend interface and TensorFlow/Keras for deep learning inference. The system takes user inputs such as geography, gender, age, balance, credit score, salary, and account activity, then preprocesses them using trained encoders and a scaler before feeding them into a neural network model.</p>
+                <div class="project-features">
+                    <ul>
+                        <li>Streamlit frontend for interactive real-time prediction UI</li>
+                        <li>TensorFlow/Keras deep learning model for churn classification</li>
+                        <li>One-hot encoding for categorical feature (Geography)</li>
+                        <li>Label encoding for binary categorical feature (Gender)</li>
+                        <li>StandardScaler for feature normalization</li>
+                        <li>Real-time probability output with threshold-based classification logic</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>Streamlit</span>
+                    <span>TensorFlow</span>
+                    <span>Keras</span>
+                    <span>Scikit-learn</span>
+                    <span>Pandas</span>
+                    <span>NumPy</span>
+                    <span>Pickle</span>
+                </div>
+                <a href="https://ann-classification-churn.streamlit.app/" target="_blank" class="project-link">
+                    View Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">Skills & Expertise</h2>
+
+        <!-- Globe first, full width -->
+        <div class="skills-globe-wrapper-full">
+            <div id="skills-globe-container" class="skills-globe-container"></div>
+        </div>
+
+        <!-- Skills list below the globe -->
+        <div class="skills-list-panel skills-list-below">
+            <div class="skills-category-block">
+                <h4><span class="cat-dot" style="background:#64FFDA"></span> Programming</h4>
+                <div class="skills-tags">
+                    <span>Python</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span>
+                </div>
+            </div>
+            <div class="skills-category-block">
+                <h4><span class="cat-dot" style="background:#FF1493"></span> AI / ML</h4>
+                <div class="skills-tags">
+                    <span>TensorFlow</span><span>PyTorch</span><span>Scikit-learn</span><span>Keras</span><span>Transfer Learning</span><span>Generative AI</span><span>Agentic AI</span>
+                </div>
+            </div>
+            <div class="skills-category-block">
+                <h4><span class="cat-dot" style="background:#00CED1"></span> NLP</h4>
+                <div class="skills-tags">
+                    <span>LangChain</span><span>Hugging Face</span><span>LLMs</span><span>NLP</span><span>Prompt Engineering</span>
+                </div>
+            </div>
+            <div class="skills-category-block">
+                <h4><span class="cat-dot" style="background:#00FF00"></span> Computer Vision</h4>
+                <div class="skills-tags">
+                    <span>OpenCV</span><span>YOLO</span><span>CNN</span><span>Image Processing</span>
+                </div>
+            </div>
+            <div class="skills-category-block">
+                <h4><span class="cat-dot" style="background:#FF6347"></span> Frameworks</h4>
+                <div class="skills-tags">
+                    <span>FastAPI</span><span>Flask</span><span>Streamlit</span><span>React.js</span>
+                </div>
+            </div>
+            <div class="skills-category-block">
+                <h4><span class="cat-dot" style="background:#FF69B4"></span> Cloud & Infra</h4>
+                <div class="skills-tags">
+                    <span>AWS</span><span>Docker</span><span>Pinecone</span><span>Firebase</span><span>Vercel</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="skills-legend">
+            <div class="legend-item"><span class="legend-color" style="background-color: #64FFDA;"></span>Programming</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #FF1493;"></span>AI/ML</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #00CED1;"></span>NLP</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #FFD700;"></span>Platforms</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #00FF00;"></span>Vision</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #FF6347;"></span>Frameworks</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #1E90FF;"></span>Backend</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #FF69B4;"></span>Cloud</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #3CB371;"></span>Frontend</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #9370DB;"></span>Infrastructure</div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Machine Learning Specialization</h3>
+                <p>Coursera – Advanced machine learning, neural networks, and deep learning.</p>
+                <div class="cert-date">November 10, 2025</div>
+                <a href="https://www.coursera.org/account/accomplishments/specialization/SIQPMN53BVQL" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="cert-card">
+                <i class="fas fa-brain"></i>
+                <h3>Introduction to Data Analytics</h3>
+                <p>Coursera - Comprehensive data analytics fundamentals and techniques</p>
+                <div class="cert-date">March 10, 2025</div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/LZOHZ9MWDVKU" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="cert-card">
+                <i class="fas fa-robot"></i>
+                <h3>Explainable AI in Python</h3>
+                <p>DataCamp - Understanding and implementing explainable AI models</p>
+                <div class="cert-date">JUN 10, 2025</div>
+                <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/aedc7f6c6be3b5d5764363fd7f5624c51777bb51" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="cert-card">
+                <i class="fas fa-database"></i>
+                <h3>Analyzing IoT Data in Python</h3>
+                <p>DataCamp - IoT data analysis and processing techniques</p>
+                <div class="cert-date">Jun 10, 2025</div>
+                <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/35fcb18872bbc0d7dfb6741dad8cff6d56998154" target="_blank" class="cert-link">
+                    <span>View Certificate</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="cert-card">
+                <i class="fab fa-python"></i>
+                <h3>Building Chatbots in Python</h3>
+                <p>DataCamp - Developing conversational AI and chatbot systems</p>
+                <div class="cert-date">Jun 10, 2025</div>
+                <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/97dd342b0f5596306ac0740dcca65911fe60069f" class="cert-link" target="_blank">
+                    View Certificate <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-content">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Connect with me professionally</p>
+                    <a href="https://www.linkedin.com/in/sufiyan-sikander-122269319/?skipRedirect=true" target="_blank" class="contact-link">
+                        <span>View Profile</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>Check out my code repositories</p>
+                    <a href="https://github.com/Sufiyan-Sikander" target="_blank" class="contact-link">
+                        <span>View Profile</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>Let's discuss opportunities</p>
+                    <a href="mailto:sufiyansikander786@gmail.com" class="contact-link">
+                        <span>Send Email</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h3>Send Me a Message</h3>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="resume-download">
+                <a href="https://drive.google.com/file/d/1m6YX1ayXwbw16vOMsAH3HYi5RHeJhuHo/view?usp=sharing" class="btn primary" target="_blank">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sufiyan Sikander. All rights reserved.</p>
+        <div class="footer-tech">
+            <span>AI</span>
+            <span>ML</span>
+            <span>NLP</span>
+            <span>Cloud</span>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" aria-label="Scroll to top" tabindex="0">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="logo-animation.js"></script>
+    <script src="particle-effects.js"></script>
+    <script src="matrix-rain.js"></script>
+    <script src="skills-globe.js"></script>
+
+    <!-- Role cycling handled in script.js -->
+
+    <!-- Theme toggle handled in script.js -->
+    <div class="effects-container">
+        <!-- Particle and Matrix effects will be rendered here -->
+    </div>
+</body>
+</html>

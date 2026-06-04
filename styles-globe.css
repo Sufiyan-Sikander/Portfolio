@@ -1,0 +1,137 @@
+/* 3D Skills Globe Styles */
+
+.skills-globe-container {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    margin: 2rem 0;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.05) 0%, rgba(10, 25, 47, 0) 70%);
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.1), inset 0 0 30px rgba(100, 255, 218, 0.05);
+}
+
+.skills-globe-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.skills-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(100, 255, 218, 0.03);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.legend-item:hover {
+    background: rgba(100, 255, 218, 0.1);
+    transform: translateX(5px);
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.legend-item:hover .legend-color {
+    box-shadow: 0 0 15px currentColor;
+    transform: scale(1.2);
+}
+
+/* Skills Section */
+.skills {
+    padding: 4rem 2rem;
+    background: var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.skills::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+}
+
+.skills::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .skills-globe-container {
+        height: 400px;
+    }
+    
+    .skills-legend {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+    
+    .legend-item {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+    
+    .legend-color {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .skills {
+        padding: 3rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-globe-container {
+        height: 300px;
+    }
+    
+    .skills-legend {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .legend-item {
+        font-size: 0.75rem;
+        padding: 0.3rem;
+        gap: 0.5rem;
+    }
+    
+    .legend-color {
+        width: 10px;
+        height: 10px;
+    }
+}
