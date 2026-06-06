@@ -1,6 +1,14 @@
 // Main script file
 console.log('Main script loaded');
 
+// ─── Define toggleTheme globally ───────────────────────────────────────────
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
 // Theme toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Typing animation effect
@@ -28,56 +36,57 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroTitle = document.querySelector('.hero h2');
     const heroText = document.querySelector('.hero-text');
 
-    // Greeting and name type in sequence
-    if (heroGreeting) typeEffect(heroGreeting, "Hello, I'm", 100);
-    if (heroName) setTimeout(() => typeEffect(heroName, "Sufiyan Sikander", 100), 1000);
+    // Sequence the typing effects
+    if (heroGreeting) {
+        typeEffect(heroGreeting, "Hello, I'm", 100);
+    }
+    
+    if (heroName) {
+        setTimeout(() => {
+            typeEffect(heroName, "Sufiyan Sikander", 100);
+        }, 1000);
+    }
+    
+    // Hero section animation: only h2 animates, hero-text appears after first h2 animation
+    const texts = ["AI Engineer", "Full Stack AI Developer", "Data Scientist", "AI Automation"];
+    let currentIndex = 0;
 
-    // ── h2 role cycling: ONE implementation, no conflicts ──
-    const titles = ["AI Engineer", "Data Scientist"];
-    let titleIdx = 0;
-    let cycling = false;
+    // Hide hero-text initially
+    if (heroText) heroText.style.opacity = '0';
 
-    function typeTitle(phrase, done) {
-        if (!heroTitle) return;
-        heroTitle.textContent = '';
-        let i = 0;
-        const t = setInterval(() => {
-            heroTitle.textContent += phrase[i++];
-            if (i >= phrase.length) { clearInterval(t); done(); }
-        }, 80);
+    function typePhrase(phrase, i = 0, cb) {
+        if (i === 0) heroTitle.textContent = '';
+        if (i < phrase.length) {
+            heroTitle.textContent += phrase.charAt(i);
+            setTimeout(() => typePhrase(phrase, i + 1, cb), 60);
+        } else if (cb) {
+            cb();
+        }
     }
 
-    function eraseTitle(done) {
-        if (!heroTitle) return;
-        const t = setInterval(() => {
-            heroTitle.textContent = heroTitle.textContent.slice(0, -1);
-            if (!heroTitle.textContent.length) { clearInterval(t); done(); }
-        }, 45);
-    }
-
-    function runCycle() {
-        if (cycling) return;
-        cycling = true;
-        typeTitle(titles[titleIdx], () => {
-            // Reveal hero-text after first title fully typed
-            if (titleIdx === 0 && heroText) {
-                heroText.style.opacity = '1';
-                heroText.style.transition = 'opacity 0.8s ease';
-            }
+    function cycleTitle() {
+        heroTitle.style.opacity = '1';
+        typePhrase(texts[currentIndex], 0, () => {
             setTimeout(() => {
-                eraseTitle(() => {
-                    titleIdx = (titleIdx + 1) % titles.length;
-                    cycling = false;
-                    setTimeout(runCycle, 300);
-                });
-            }, 2500);
+                heroTitle.style.opacity = '0';
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % texts.length;
+                    heroTitle.textContent = '';
+                    heroTitle.style.opacity = '1';
+                    setTimeout(cycleTitle, 200);
+                }, 400); // fade out duration
+            }, 2000); // visible time after typing
         });
     }
-
-    if (heroTitle) heroTitle.textContent = '';
-    if (heroText) heroText.style.opacity = '0';
-    // Start after name finishes typing
-    setTimeout(runCycle, 2800);
+    heroTitle.style.opacity = '1';
+    heroTitle.style.transition = 'opacity 0.4s';
+    setTimeout(cycleTitle, 1000);
+    
+    if (heroText) {
+        setTimeout(() => {
+            typeEffect(heroText, "Building production-ready AI systems and intelligent applications using Generative AI, Large Language Models (LLMs), Agentic AI frameworks, RAG pipelines, and MCP-based tool integration. Focused on applied Machine Learning and real-world AI solutions.", 50);
+        }, 3000);
+    }
     
     // Mobile menu functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -278,23 +287,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Theme toggle
-    const themeToggle = document.querySelector('.theme-toggle');
-    if (themeToggle) {
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
-        
-        // Set initial theme
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-    }
+    // ─── Theme toggle (init only — click handler set below) ────────────────
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
 
     // Initialize visual effects
     if (typeof ParticleEffect !== 'undefined') {
@@ -494,24 +490,20 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', lazyLoadResources);
 });
 
-// Theme Toggle
-function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme');
-    document.documentElement.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-    localStorage.setItem('theme', document.documentElement.getAttribute('data-theme'));
-}
-(function() {
-    const saved = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', saved);
-})();
+// ─── Theme Toggle with Keyboard Support ────────────────────────────────────
+// Wrapped in DOMContentLoaded so the element exists before we query it
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
 
-const themeToggle = document.querySelector('.theme-toggle');
-if (themeToggle) {
     themeToggle.addEventListener('click', toggleTheme);
     themeToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+        }
     });
-}
+});
 
 // Mobile Menu with Keyboard Support
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
