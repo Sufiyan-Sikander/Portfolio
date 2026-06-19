@@ -157,7 +157,7 @@ function initSkillsGlobe() {
 // Tracks skills that failed to load any logo image
 let noLogoSkills = [];
 
-// Generate a simple canvas texture for skills that have no logo but must appear on the sphere
+// Generate a canvas texture with emoji icon + skill name label
 function makeFallbackTexture(skill) {
     const size = 128;
     const canvas = document.createElement('canvas');
@@ -170,86 +170,38 @@ function makeFallbackTexture(skill) {
     const hex = '#' + ('000000' + color.toString(16)).slice(-6);
     ctx.beginPath();
     ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
-    ctx.fillStyle = hex + '33'; // 20% opacity fill
+    ctx.fillStyle = hex + '44';
     ctx.fill();
     ctx.strokeStyle = hex;
     ctx.lineWidth = 3;
     ctx.stroke();
 
-    // Emoji / icon in centre
+    // Emoji in centre
     ctx.font = `${size * 0.38}px serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(skill.icon, size / 2, size / 2);
+    ctx.fillText(skill.icon, size / 2, size / 2 - 10);
+
+    // Skill name label below emoji
+    const label = skill.name.length > 10 ? skill.name.slice(0, 9) + '…' : skill.name;
+    ctx.font = `bold ${size * 0.13}px sans-serif`;
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(label, size / 2, size - 10);
 
     return new THREE.CanvasTexture(canvas);
 }
 
 function createSkillNodes() {
-    // We need to know final sphere-node count after logo resolution,
-    // so we first attempt all loads, then redistribute positions once done.
-    let resolved = 0;
-    const logoSkills = []; // will be populated as logos succeed
+    // Generate all textures instantly using canvas — no network requests, zero delay
+    const logoSkills = skillsData.map(skill => ({
+        skill,
+        texture: makeFallbackTexture(skill)
+    }));
 
-    // Phase 1: probe every skill for a logo
-    skillsData.forEach((skill) => {
-        const loader = new THREE.TextureLoader();
-        const slug = skill.slug || skill.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-        const logoPath = `images/logos/${slug}.png`;
-        const cdnUrl = `https://cdn.simpleicons.org/${slug}`;
-
-        function onAllFailed() {
-            if (skill.forceGlobe) {
-                // Generate a canvas-based fallback so it still appears on the sphere
-                logoSkills.push({ skill, texture: makeFallbackTexture(skill) });
-            } else {
-                // No logo found — send to side panel
-                noLogoSkills.push(skill);
-            }
-            checkDone();
-        }
-
-        function onLogoLoaded(texture) {
-            if (skill.tint) {
-                // Redraw onto a canvas with white tint for dark/black logos (e.g. Railway, Vercel)
-                const img = texture.image;
-                const size = (img.naturalWidth || img.width || 128);
-                const canvas = document.createElement('canvas');
-                canvas.width = size;
-                canvas.height = size;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, size, size);
-                // Replace all drawn pixels with white while preserving alpha shape
-                ctx.globalCompositeOperation = 'source-in';
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, size, size);
-                const tintedTexture = new THREE.CanvasTexture(canvas);
-                logoSkills.push({ skill, texture: tintedTexture });
-            } else {
-                logoSkills.push({ skill, texture });
-            }
-            checkDone();
-        }
-
-        function tryLoad(urls, idx = 0) {
-            if (idx >= urls.length) { onAllFailed(); return; }
-            loader.load(
-                urls[idx],
-                (texture) => onLogoLoaded(texture),
-                undefined,
-                () => tryLoad(urls, idx + 1)
-            );
-        }
-
-        tryLoad([cdnUrl, logoPath, logoPath.replace(/\.png$/, '.svg')]);
-    });
-
-    function checkDone() {
-        resolved++;
-        if (resolved < skillsData.length) return;
-
-        // Phase 2: distribute only logo-having skills on the sphere
+    // Distribute all skills on the sphere immediately
+    {
         const count = logoSkills.length;
         logoSkills.forEach(({ skill, texture }, index) => {
             const phi = Math.acos(-1 + (2 * index) / count);
