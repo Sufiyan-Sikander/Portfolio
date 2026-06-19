@@ -336,6 +336,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Custom cursor
     const createCustomCursor = () => {
+        // Skip on touch/mobile devices - there's no real mouse pointer
+        const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches
+            || ('ontouchstart' in window)
+            || navigator.maxTouchPoints > 0;
+        if (isTouchDevice) return;
+
         const cursor = document.createElement('div');
         cursor.classList.add('custom-cursor');
         document.body.appendChild(cursor);
