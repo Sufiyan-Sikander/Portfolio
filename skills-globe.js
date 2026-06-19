@@ -1,10 +1,10 @@
 // Skills Data - All skills to be displayed
 const skillsData = [
     // Programming & Databases
-    { name: 'Python', icon: '🐍', category: 'Programming' },
-    { name: 'MySQL', icon: '🗄️', category: 'Programming' },
-    { name: 'PostgreSQL', icon: '🗄️', category: 'Programming' },
-    
+    { name: 'Python', icon: '🐍', category: 'Programming', slug: 'python' },
+    { name: 'MySQL', icon: '🗄️', category: 'Programming', slug: 'mysql' },
+    { name: 'PostgreSQL', icon: '🗄️', category: 'Programming', slug: 'postgresql' },
+
     // AI & Machine Learning
     { name: 'Machine Learning', icon: '🤖', category: 'AI' },
     { name: 'Deep Learning', icon: '🧠', category: 'AI' },
@@ -14,7 +14,7 @@ const skillsData = [
     { name: 'Unsupervised Learning', icon: '🔍', category: 'AI' },
     { name: 'Generative AI', icon: '✨', category: 'AI' },
     { name: 'Agentic AI', icon: '🎯', category: 'AI' },
-    
+
     // NLP & LLMs
     { name: 'NLP', icon: '💬', category: 'NLP' },
     { name: 'LLMs', icon: '🧠', category: 'NLP' },
@@ -23,52 +23,52 @@ const skillsData = [
     { name: 'NER', icon: '🏷️', category: 'NLP' },
     { name: 'GPT Models', icon: '📦', category: 'NLP' },
     { name: 'Transformers', icon: '🔗', category: 'NLP', slug: 'huggingface' },
-    
+
     // AI Models & Platforms
     { name: 'Groq', icon: '🚀', category: 'Platforms', slug: 'groq', forceGlobe: true },
     { name: 'Gemini AI', icon: '✨', category: 'Platforms', slug: 'googlegemini' },
     { name: 'OpenAI APIs', icon: '🔑', category: 'Platforms', slug: 'openai', forceGlobe: true },
-    
+
     // Computer Vision
-    { name: 'OpenCV', icon: '👁️', category: 'Vision' },
+    { name: 'OpenCV', icon: '👁️', category: 'Vision', slug: 'opencv' },
     { name: 'YOLOv8', icon: '🎯', category: 'Vision', slug: 'ultralytics' },
     { name: 'Face Detection', icon: '😊', category: 'Vision' },
     { name: 'Object Detection', icon: '📦', category: 'Vision' },
-    
+
     // Frameworks & Libraries
-    { name: 'TensorFlow', icon: '🧠', category: 'Frameworks' },
-    { name: 'PyTorch', icon: '🔥', category: 'Frameworks' },
+    { name: 'TensorFlow', icon: '🧠', category: 'Frameworks', slug: 'tensorflow' },
+    { name: 'PyTorch', icon: '🔥', category: 'Frameworks', slug: 'pytorch' },
     { name: 'Scikit-learn', icon: '📈', category: 'Frameworks', slug: 'scikitlearn' },
-    { name: 'Keras', icon: '⚙️', category: 'Frameworks' },
-    { name: 'Pandas', icon: '📊', category: 'Frameworks' },
-    { name: 'NumPy', icon: '🔢', category: 'Frameworks' },
-    { name: 'LangChain', icon: '🔗', category: 'Frameworks' },
+    { name: 'Keras', icon: '⚙️', category: 'Frameworks', slug: 'keras' },
+    { name: 'Pandas', icon: '📊', category: 'Frameworks', slug: 'pandas' },
+    { name: 'NumPy', icon: '🔢', category: 'Frameworks', slug: 'numpy' },
+    { name: 'LangChain', icon: '🔗', category: 'Frameworks', slug: 'langchain' },
     { name: 'CrewAI', icon: '👥', category: 'Frameworks' },
-    { name: 'n8n', icon: '🔄', category: 'Frameworks' },
-    
+    { name: 'n8n', icon: '🔄', category: 'Frameworks', slug: 'n8n' },
+
     // Backend & Deployment
-    { name: 'FastAPI', icon: '⚡', category: 'Backend' },
-    { name: 'Streamlit', icon: '🌊', category: 'Backend' },
+    { name: 'FastAPI', icon: '⚡', category: 'Backend', slug: 'fastapi' },
+    { name: 'Streamlit', icon: '🌊', category: 'Backend', slug: 'streamlit' },
     { name: 'REST APIs', icon: '↔️', category: 'Backend', slug: 'openapiinitiative' },
-    { name: 'Docker', icon: '🐳', category: 'Backend' },
+    { name: 'Docker', icon: '🐳', category: 'Backend', slug: 'docker' },
     { name: 'Railway', icon: '🚂', category: 'Backend', slug: 'railway', tint: true },
     { name: 'Vercel', icon: '⬆️', category: 'Backend', slug: 'vercel', tint: true },
-    
+
     // Cloud & Databases
     { name: 'Pinecone', icon: '🖲️', category: 'Cloud', slug: 'pinecone', forceGlobe: true },
-    { name: 'Firebase', icon: '🔥', category: 'Cloud' },
-    { name: 'Supabase', icon: '🗄️', category: 'Cloud' },
+    { name: 'Firebase', icon: '🔥', category: 'Cloud', slug: 'firebase' },
+    { name: 'Supabase', icon: '🗄️', category: 'Cloud', slug: 'supabase' },
     { name: 'Slack', icon: '💬', category: 'Cloud', slug: 'slack', forceGlobe: true },
-    { name: 'Clickup', icon: '✅', category: 'Cloud' },
-    
+    { name: 'Clickup', icon: '✅', category: 'Cloud', slug: 'clickup' },
+
     // Frontend & Full-Stack
     { name: 'React.js', icon: '⚛️', category: 'Frontend', slug: 'react' },
     { name: 'Authentication', icon: '🔐', category: 'Frontend' },
     { name: 'Email Verification', icon: '📧', category: 'Frontend' },
     { name: 'Chat Systems', icon: '💬', category: 'Frontend' },
-    
+
     // AI Infrastructure
-    { name: 'OpenAI Agent SDK', icon: '📦', category: 'Infrastructure' },
+    { name: 'OpenAI Agent SDK', icon: '📦', category: 'Infrastructure', slug: 'openai' },
     { name: 'MCP Servers', icon: '🖥️', category: 'Infrastructure' },
     { name: 'AI Workflow', icon: '⚙️', category: 'Infrastructure' },
     { name: 'AI Integration', icon: '🧩', category: 'Infrastructure' }
@@ -87,6 +87,9 @@ const categoryColors = {
     'Frontend': 0x3CB371,
     'Infrastructure': 0x9370DB
 };
+
+// CDN base for real brand logos (Simple Icons via jsDelivr)
+const LOGO_CDN_BASE = 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/';
 
 let scene, camera, renderer, globe, particles = [];
 let connectionLines = null;
@@ -132,7 +135,7 @@ function initSkillsGlobe() {
     globe = new THREE.Mesh(globeGeometry, globeMaterial);
     scene.add(globe);
 
-    // Create particle nodes for each skill (connections are created inside once logos resolve)
+    // Create particle nodes for each skill (connections are created inside once nodes are placed)
     createSkillNodes();
 
     // Lighting
@@ -154,10 +157,7 @@ function initSkillsGlobe() {
     animate();
 }
 
-// Tracks skills that failed to load any logo image
-let noLogoSkills = [];
-
-// Generate a canvas texture with emoji icon + skill name label
+// Generate a canvas texture with emoji icon + skill name label (instant, zero-network fallback)
 function makeFallbackTexture(skill) {
     const size = 128;
     const canvas = document.createElement('canvas');
@@ -165,7 +165,22 @@ function makeFallbackTexture(skill) {
     canvas.height = size;
     const ctx = canvas.getContext('2d');
 
-    // Background circle
+    drawBackgroundCircle(ctx, skill, size);
+
+    // Emoji in centre
+    ctx.font = `${size * 0.38}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(skill.icon, size / 2, size / 2 - 10);
+
+    drawLabel(ctx, skill, size);
+
+    return new THREE.CanvasTexture(canvas);
+}
+
+// Shared background circle drawing (used by both fallback and logo textures)
+function drawBackgroundCircle(ctx, skill, size) {
     const color = categoryColors[skill.category] || 0x64FFDA;
     const hex = '#' + ('000000' + color.toString(16)).slice(-6);
     ctx.beginPath();
@@ -175,60 +190,108 @@ function makeFallbackTexture(skill) {
     ctx.strokeStyle = hex;
     ctx.lineWidth = 3;
     ctx.stroke();
+}
 
-    // Emoji in centre
-    ctx.font = `${size * 0.38}px serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#ffffff';
-    ctx.fillText(skill.icon, size / 2, size / 2 - 10);
-
-    // Skill name label below emoji
+// Shared label drawing (used by both fallback and logo textures)
+function drawLabel(ctx, skill, size) {
     const label = skill.name.length > 10 ? skill.name.slice(0, 9) + '…' : skill.name;
     ctx.font = `bold ${size * 0.13}px sans-serif`;
+    ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
     ctx.fillStyle = '#ffffff';
     ctx.fillText(label, size / 2, size - 10);
+}
+
+// Build a canvas texture using a real loaded brand logo image
+function makeLogoTexture(skill, img) {
+    const size = 128;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    drawBackgroundCircle(ctx, skill, size);
+
+    // Draw the logo centered in the upper portion of the circle
+    const logoSize = size * 0.42;
+    const logoX = (size - logoSize) / 2;
+    const logoY = size / 2 - logoSize / 2 - 8;
+
+    if (skill.tint) {
+        // Recolor monochrome logos to match category color using an offscreen pass
+        const off = document.createElement('canvas');
+        off.width = size;
+        off.height = size;
+        const offCtx = off.getContext('2d');
+        offCtx.drawImage(img, 0, 0, size, size);
+        const color = categoryColors[skill.category] || 0x64FFDA;
+        const hex = '#' + ('000000' + color.toString(16)).slice(-6);
+        offCtx.globalCompositeOperation = 'source-in';
+        offCtx.fillStyle = hex;
+        offCtx.fillRect(0, 0, size, size);
+        ctx.drawImage(off, logoX, logoY, logoSize, logoSize);
+    } else {
+        ctx.drawImage(img, logoX, logoY, logoSize, logoSize);
+    }
+
+    drawLabel(ctx, skill, size);
 
     return new THREE.CanvasTexture(canvas);
 }
 
-function createSkillNodes() {
-    // Generate all textures instantly using canvas — no network requests, zero delay
-    const logoSkills = skillsData.map(skill => ({
-        skill,
-        texture: makeFallbackTexture(skill)
-    }));
-
-    // Distribute all skills on the sphere immediately
-    {
-        const count = logoSkills.length;
-        logoSkills.forEach(({ skill, texture }, index) => {
-            const phi = Math.acos(-1 + (2 * index) / count);
-            const theta = Math.sqrt(count * Math.PI) * phi;
-
-            const x = Math.cos(theta) * Math.sin(phi) * 1.8;
-            const y = Math.sin(theta) * Math.sin(phi) * 1.8;
-            const z = Math.cos(phi) * 1.8;
-
-            const logoMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
-            const logoSprite = new THREE.Sprite(logoMaterial);
-            logoSprite.position.set(x, y, z);
-            logoSprite.scale.set(0.32, 0.32, 1);
-            logoSprite.userData = { skill, originalPosition: new THREE.Vector3(x, y, z), isLogo: true };
-            scene.add(logoSprite);
-            particles.push(logoSprite);
-        });
-
-        // Rebuild connections now that all nodes are placed
-        createConnections();
-    }
+// Attempt to load a brand logo SVG from the CDN; resolves null on failure
+function loadLogoImage(slug) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = `${LOGO_CDN_BASE}${slug}.svg`;
+    });
 }
 
-function renderNoLogoPanel() {
-    // Panel removed — skills shown in list below globe
-    const existing = document.getElementById('no-logo-skills-panel');
-    if (existing) existing.remove();
+function createSkillNodes() {
+    // Place every skill on the sphere immediately using the instant emoji/canvas
+    // fallback texture, so the globe never waits on the network to render.
+    const count = skillsData.length;
+    const spriteBySkill = new Map();
+
+    skillsData.forEach((skill, index) => {
+        const phi = Math.acos(-1 + (2 * index) / count);
+        const theta = Math.sqrt(count * Math.PI) * phi;
+
+        const x = Math.cos(theta) * Math.sin(phi) * 1.8;
+        const y = Math.sin(theta) * Math.sin(phi) * 1.8;
+        const z = Math.cos(phi) * 1.8;
+
+        const fallbackTexture = makeFallbackTexture(skill);
+        const logoMaterial = new THREE.SpriteMaterial({ map: fallbackTexture, transparent: true });
+        const logoSprite = new THREE.Sprite(logoMaterial);
+        logoSprite.position.set(x, y, z);
+        logoSprite.scale.set(0.32, 0.32, 1);
+        logoSprite.userData = { skill, originalPosition: new THREE.Vector3(x, y, z), isLogo: true };
+        scene.add(logoSprite);
+        particles.push(logoSprite);
+        spriteBySkill.set(skill, logoSprite);
+    });
+
+    // Connections only depend on node positions, which are already final — build now.
+    createConnections();
+
+    // Upgrade nodes with real brand logos from the CDN as they arrive, one at a
+    // time, without blocking the initial render or repositioning anything.
+    skillsData.forEach((skill) => {
+        if (!skill.slug) return; // no real-logo mapping for this skill, keep fallback
+        loadLogoImage(skill.slug).then((img) => {
+            if (!img) return; // CDN miss — silently keep the emoji fallback
+            const sprite = spriteBySkill.get(skill);
+            if (!sprite) return;
+            const newTexture = makeLogoTexture(skill, img);
+            sprite.material.map.dispose();
+            sprite.material.map = newTexture;
+            sprite.material.needsUpdate = true;
+        });
+    });
 }
 
 function createConnections() {
@@ -262,12 +325,12 @@ function createConnections() {
     geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
 
-        const lineMaterial = new THREE.LineBasicMaterial({
-            vertexColors: true,
-            opacity: 0.08,
-            transparent: true,
-            linewidth: 1
-        });
+    const lineMaterial = new THREE.LineBasicMaterial({
+        vertexColors: true,
+        opacity: 0.08,
+        transparent: true,
+        linewidth: 1
+    });
 
     connectionLines = new THREE.LineSegments(geometry, lineMaterial);
     scene.add(connectionLines);
@@ -384,19 +447,19 @@ function animate() {
         if (particle.userData && particle.userData.originalPosition) {
             // Apply same rotation as globe
             const pos = particle.userData.originalPosition.clone();
-            
+
             // Rotate around X axis
             const cosX = Math.cos(currentRotation.x);
             const sinX = Math.sin(currentRotation.x);
             let y = pos.y * cosX - pos.z * sinX;
             let z = pos.y * sinX + pos.z * cosX;
-            
+
             // Rotate around Y axis
             const cosY = Math.cos(currentRotation.y);
             const sinY = Math.sin(currentRotation.y);
             let x = pos.x * cosY + z * sinY;
             z = -pos.x * sinY + z * cosY;
-            
+
             particle.position.set(x, y, z);
         }
     });
