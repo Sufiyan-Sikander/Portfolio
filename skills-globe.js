@@ -1,9 +1,12 @@
 // Skills Data - All skills to be displayed
+// `slug` maps to a Simple Icons filename (for the logo shape/path)
+// `color` is the official brand hex color for that logo (Simple Icons SVGs
+// ship as black-only paths with no embedded color, so we supply it here)
 const skillsData = [
     // Programming & Databases
-    { name: 'Python', icon: '🐍', category: 'Programming', slug: 'python' },
-    { name: 'MySQL', icon: '🗄️', category: 'Programming', slug: 'mysql' },
-    { name: 'PostgreSQL', icon: '🗄️', category: 'Programming', slug: 'postgresql' },
+    { name: 'Python', icon: '🐍', category: 'Programming', slug: 'python', color: '#3776AB' },
+    { name: 'MySQL', icon: '🗄️', category: 'Programming', slug: 'mysql', color: '#4479A1' },
+    { name: 'PostgreSQL', icon: '🗄️', category: 'Programming', slug: 'postgresql', color: '#4169E1' },
 
     // AI & Machine Learning
     { name: 'Machine Learning', icon: '🤖', category: 'AI' },
@@ -22,59 +25,59 @@ const skillsData = [
     { name: 'Text Classification', icon: '📝', category: 'NLP' },
     { name: 'NER', icon: '🏷️', category: 'NLP' },
     { name: 'GPT Models', icon: '📦', category: 'NLP' },
-    { name: 'Transformers', icon: '🔗', category: 'NLP', slug: 'huggingface' },
+    { name: 'Transformers', icon: '🔗', category: 'NLP', slug: 'huggingface', color: '#FFD21E' },
 
     // AI Models & Platforms
-    { name: 'Groq', icon: '🚀', category: 'Platforms', slug: 'groq', forceGlobe: true },
-    { name: 'Gemini AI', icon: '✨', category: 'Platforms', slug: 'googlegemini' },
-    { name: 'OpenAI APIs', icon: '🔑', category: 'Platforms', slug: 'openai', forceGlobe: true },
+    { name: 'Groq', icon: '🚀', category: 'Platforms', slug: 'groq', color: '#F55036', forceGlobe: true },
+    { name: 'Gemini AI', icon: '✨', category: 'Platforms', slug: 'googlegemini', color: '#8E75B2' },
+    { name: 'OpenAI APIs', icon: '🔑', category: 'Platforms', slug: 'openai', color: '#412991', forceGlobe: true },
 
     // Computer Vision
-    { name: 'OpenCV', icon: '👁️', category: 'Vision', slug: 'opencv' },
-    { name: 'YOLOv8', icon: '🎯', category: 'Vision', slug: 'ultralytics' },
+    { name: 'OpenCV', icon: '👁️', category: 'Vision', slug: 'opencv', color: '#5C3EE8' },
+    { name: 'YOLOv8', icon: '🎯', category: 'Vision', slug: 'ultralytics', color: '#0B23A9' },
     { name: 'Face Detection', icon: '😊', category: 'Vision' },
     { name: 'Object Detection', icon: '📦', category: 'Vision' },
 
     // Frameworks & Libraries
-    { name: 'TensorFlow', icon: '🧠', category: 'Frameworks', slug: 'tensorflow' },
-    { name: 'PyTorch', icon: '🔥', category: 'Frameworks', slug: 'pytorch' },
-    { name: 'Scikit-learn', icon: '📈', category: 'Frameworks', slug: 'scikitlearn' },
-    { name: 'Keras', icon: '⚙️', category: 'Frameworks', slug: 'keras' },
-    { name: 'Pandas', icon: '📊', category: 'Frameworks', slug: 'pandas' },
-    { name: 'NumPy', icon: '🔢', category: 'Frameworks', slug: 'numpy' },
-    { name: 'LangChain', icon: '🔗', category: 'Frameworks', slug: 'langchain' },
+    { name: 'TensorFlow', icon: '🧠', category: 'Frameworks', slug: 'tensorflow', color: '#FF6F00' },
+    { name: 'PyTorch', icon: '🔥', category: 'Frameworks', slug: 'pytorch', color: '#EE4C2C' },
+    { name: 'Scikit-learn', icon: '📈', category: 'Frameworks', slug: 'scikitlearn', color: '#F7931E' },
+    { name: 'Keras', icon: '⚙️', category: 'Frameworks', slug: 'keras', color: '#D00000' },
+    { name: 'Pandas', icon: '📊', category: 'Frameworks', slug: 'pandas', color: '#150458' },
+    { name: 'NumPy', icon: '🔢', category: 'Frameworks', slug: 'numpy', color: '#013243' },
+    { name: 'LangChain', icon: '🔗', category: 'Frameworks', slug: 'langchain', color: '#1C3C3C' },
     { name: 'CrewAI', icon: '👥', category: 'Frameworks' },
-    { name: 'n8n', icon: '🔄', category: 'Frameworks', slug: 'n8n' },
+    { name: 'n8n', icon: '🔄', category: 'Frameworks', slug: 'n8n', color: '#EA4B71' },
 
     // Backend & Deployment
-    { name: 'FastAPI', icon: '⚡', category: 'Backend', slug: 'fastapi' },
-    { name: 'Streamlit', icon: '🌊', category: 'Backend', slug: 'streamlit' },
-    { name: 'REST APIs', icon: '↔️', category: 'Backend', slug: 'openapiinitiative' },
-    { name: 'Docker', icon: '🐳', category: 'Backend', slug: 'docker' },
-    { name: 'Railway', icon: '🚂', category: 'Backend', slug: 'railway', tint: true },
-    { name: 'Vercel', icon: '⬆️', category: 'Backend', slug: 'vercel', tint: true },
+    { name: 'FastAPI', icon: '⚡', category: 'Backend', slug: 'fastapi', color: '#009688' },
+    { name: 'Streamlit', icon: '🌊', category: 'Backend', slug: 'streamlit', color: '#FF4B4B' },
+    { name: 'REST APIs', icon: '↔️', category: 'Backend', slug: 'openapiinitiative', color: '#6BA539' },
+    { name: 'Docker', icon: '🐳', category: 'Backend', slug: 'docker', color: '#2496ED' },
+    { name: 'Railway', icon: '🚂', category: 'Backend', slug: 'railway', color: '#C9F074' },
+    { name: 'Vercel', icon: '⬆️', category: 'Backend', slug: 'vercel', color: '#FFFFFF' },
 
     // Cloud & Databases
-    { name: 'Pinecone', icon: '🖲️', category: 'Cloud', slug: 'pinecone', forceGlobe: true },
-    { name: 'Firebase', icon: '🔥', category: 'Cloud', slug: 'firebase' },
-    { name: 'Supabase', icon: '🗄️', category: 'Cloud', slug: 'supabase' },
-    { name: 'Slack', icon: '💬', category: 'Cloud', slug: 'slack', forceGlobe: true },
-    { name: 'Clickup', icon: '✅', category: 'Cloud', slug: 'clickup' },
+    { name: 'Pinecone', icon: '🖲️', category: 'Cloud', slug: 'pinecone', color: '#0A0A0A', forceGlobe: true },
+    { name: 'Firebase', icon: '🔥', category: 'Cloud', slug: 'firebase', color: '#FFCA28' },
+    { name: 'Supabase', icon: '🗄️', category: 'Cloud', slug: 'supabase', color: '#3FCF8E' },
+    { name: 'Slack', icon: '💬', category: 'Cloud', slug: 'slack', color: '#4A154B', forceGlobe: true },
+    { name: 'Clickup', icon: '✅', category: 'Cloud', slug: 'clickup', color: '#7B68EE' },
 
     // Frontend & Full-Stack
-    { name: 'React.js', icon: '⚛️', category: 'Frontend', slug: 'react' },
+    { name: 'React.js', icon: '⚛️', category: 'Frontend', slug: 'react', color: '#61DAFB' },
     { name: 'Authentication', icon: '🔐', category: 'Frontend' },
     { name: 'Email Verification', icon: '📧', category: 'Frontend' },
     { name: 'Chat Systems', icon: '💬', category: 'Frontend' },
 
     // AI Infrastructure
-    { name: 'OpenAI Agent SDK', icon: '📦', category: 'Infrastructure', slug: 'openai' },
+    { name: 'OpenAI Agent SDK', icon: '📦', category: 'Infrastructure', slug: 'openai', color: '#412991' },
     { name: 'MCP Servers', icon: '🖥️', category: 'Infrastructure' },
     { name: 'AI Workflow', icon: '⚙️', category: 'Infrastructure' },
     { name: 'AI Integration', icon: '🧩', category: 'Infrastructure' }
 ];
 
-// Color mapping for categories
+// Color mapping for categories (used only for connection lines + emoji fallback text)
 const categoryColors = {
     'Programming': 0x64FFDA,
     'AI': 0xFF1493,
@@ -157,7 +160,9 @@ function initSkillsGlobe() {
     animate();
 }
 
-// Generate a canvas texture with emoji icon + skill name label (instant, zero-network fallback)
+// Generate a transparent canvas texture with just the emoji icon + label —
+// no background circle/outline. Used instantly for every node, and permanently
+// for skills that have no real logo slug.
 function makeFallbackTexture(skill) {
     const size = 128;
     const canvas = document.createElement('canvas');
@@ -165,31 +170,16 @@ function makeFallbackTexture(skill) {
     canvas.height = size;
     const ctx = canvas.getContext('2d');
 
-    drawBackgroundCircle(ctx, skill, size);
-
-    // Emoji in centre
-    ctx.font = `${size * 0.38}px serif`;
+    // Emoji in centre (slightly above middle to leave room for the label)
+    ctx.font = `${size * 0.42}px serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(skill.icon, size / 2, size / 2 - 10);
+    ctx.fillText(skill.icon, size / 2, size / 2 - 14);
 
     drawLabel(ctx, skill, size);
 
     return new THREE.CanvasTexture(canvas);
-}
-
-// Shared background circle drawing (used by both fallback and logo textures)
-function drawBackgroundCircle(ctx, skill, size) {
-    const color = categoryColors[skill.category] || 0x64FFDA;
-    const hex = '#' + ('000000' + color.toString(16)).slice(-6);
-    ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
-    ctx.fillStyle = hex + '44';
-    ctx.fill();
-    ctx.strokeStyle = hex;
-    ctx.lineWidth = 3;
-    ctx.stroke();
 }
 
 // Shared label drawing (used by both fallback and logo textures)
@@ -202,7 +192,8 @@ function drawLabel(ctx, skill, size) {
     ctx.fillText(label, size / 2, size - 10);
 }
 
-// Build a canvas texture using a real loaded brand logo image
+// Build a transparent canvas texture using a real loaded brand logo, recolored
+// to the skill's official brand color. No circle, no outline — just the mark.
 function makeLogoTexture(skill, img) {
     const size = 128;
     const canvas = document.createElement('canvas');
@@ -210,29 +201,22 @@ function makeLogoTexture(skill, img) {
     canvas.height = size;
     const ctx = canvas.getContext('2d');
 
-    drawBackgroundCircle(ctx, skill, size);
-
-    // Draw the logo centered in the upper portion of the circle
-    const logoSize = size * 0.42;
+    const logoSize = size * 0.5;
     const logoX = (size - logoSize) / 2;
-    const logoY = size / 2 - logoSize / 2 - 8;
+    const logoY = size / 2 - logoSize / 2 - 14;
 
-    if (skill.tint) {
-        // Recolor monochrome logos to match category color using an offscreen pass
-        const off = document.createElement('canvas');
-        off.width = size;
-        off.height = size;
-        const offCtx = off.getContext('2d');
-        offCtx.drawImage(img, 0, 0, size, size);
-        const color = categoryColors[skill.category] || 0x64FFDA;
-        const hex = '#' + ('000000' + color.toString(16)).slice(-6);
-        offCtx.globalCompositeOperation = 'source-in';
-        offCtx.fillStyle = hex;
-        offCtx.fillRect(0, 0, size, size);
-        ctx.drawImage(off, logoX, logoY, logoSize, logoSize);
-    } else {
-        ctx.drawImage(img, logoX, logoY, logoSize, logoSize);
-    }
+    // Simple Icons SVGs are monochrome black paths with no embedded brand
+    // color, so we draw the path then recolor it via source-in compositing.
+    const off = document.createElement('canvas');
+    off.width = size;
+    off.height = size;
+    const offCtx = off.getContext('2d');
+    offCtx.drawImage(img, 0, 0, size, size);
+    offCtx.globalCompositeOperation = 'source-in';
+    offCtx.fillStyle = skill.color || '#FFFFFF';
+    offCtx.fillRect(0, 0, size, size);
+
+    ctx.drawImage(off, logoX, logoY, logoSize, logoSize);
 
     drawLabel(ctx, skill, size);
 
@@ -278,10 +262,10 @@ function createSkillNodes() {
     // Connections only depend on node positions, which are already final — build now.
     createConnections();
 
-    // Upgrade nodes with real brand logos from the CDN as they arrive, one at a
-    // time, without blocking the initial render or repositioning anything.
+    // Upgrade nodes with real, brand-colored logos from the CDN as they arrive,
+    // without blocking the initial render or repositioning anything.
     skillsData.forEach((skill) => {
-        if (!skill.slug) return; // no real-logo mapping for this skill, keep fallback
+        if (!skill.slug) return; // no real-logo mapping for this skill, keep emoji fallback
         loadLogoImage(skill.slug).then((img) => {
             if (!img) return; // CDN miss — silently keep the emoji fallback
             const sprite = spriteBySkill.get(skill);
