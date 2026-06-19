@@ -892,6 +892,130 @@ section {
     left: 0;
 }
 
+/* Awards & Achievements Section */
+.awards-subsection {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+}
+
+.subsection-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.subsection-title i {
+    color: var(--secondary-color);
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.award-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.award-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(100, 255, 218, 0.05);
+}
+
+.award-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.award-image-fallback {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--secondary-color);
+}
+
+.award-content {
+    padding: 1.5rem;
+}
+
+.award-badge {
+    display: inline-block;
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--secondary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.award-title {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.award-description {
+    color: var(--text-color-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.award-link {
+    color: var(--secondary-color);
+}
+
+.award-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.award-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    background: rgba(100, 255, 218, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+    .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .award-image-wrapper {
+        aspect-ratio: 4 / 3;
+    }
+
+    .award-content {
+        padding: 1.25rem;
+    }
+}
+
 /* Certifications Section */
 .cert-grid {
     display: grid;
