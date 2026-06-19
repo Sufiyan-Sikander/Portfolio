@@ -102,7 +102,7 @@ let currentRotation = { x: 0, y: 0 };
 let isDragging = false;
 let dragStart = { x: 0, y: 0 };
 let dragRotation = { x: 0, y: 0 };
-const ROTATION_SPEED = 0.0002; // Adjust rotation speed here
+const ROTATION_SPEED = 0.0002;
 let raycaster = new THREE.Raycaster();
 let hoveredSkill = null;
 let tooltip = null;
@@ -138,7 +138,7 @@ function initSkillsGlobe() {
     globe = new THREE.Mesh(globeGeometry, globeMaterial);
     scene.add(globe);
 
-    // Create particle nodes for each skill (connections are created inside once nodes are placed)
+    // Create particle nodes for each skill
     createSkillNodes();
 
     // Lighting
@@ -149,20 +149,29 @@ function initSkillsGlobe() {
     const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
     scene.add(ambientLight);
 
-    // Mouse tracking
+    // Mouse event listeners
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mouseup', onMouseUp);
     container.addEventListener('mouseleave', hideTooltip);
+
+    // Touch event listeners (mobile support)
+    container.addEventListener('touchstart', onTouchStart, { passive: false });
+    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    container.addEventListener('touchend', onTouchEnd);
+
     window.addEventListener('resize', onWindowResize);
+
+    // Prevent default touch behavior on the container (stops page scroll while rotating)
+    container.style.touchAction = 'none';
+    container.style.webkitUserSelect = 'none';
+    container.style.userSelect = 'none';
 
     // Animation loop
     animate();
 }
 
-// Generate a transparent canvas texture with just the emoji icon + label —
-// no background circle/outline. Used instantly for every node, and permanently
-// for skills that have no real logo slug.
+// Generate a transparent canvas texture with just the emoji icon + label
 function makeFallbackTexture(skill) {
     const size = 128;
     const canvas = document.createElement('canvas');
@@ -170,7 +179,6 @@ function makeFallbackTexture(skill) {
     canvas.height = size;
     const ctx = canvas.getContext('2d');
 
-    // Emoji in centre (slightly above middle to leave room for the label)
     ctx.font = `${size * 0.42}px serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -182,7 +190,7 @@ function makeFallbackTexture(skill) {
     return new THREE.CanvasTexture(canvas);
 }
 
-// Shared label drawing (used by both fallback and logo textures)
+// Shared label drawing
 function drawLabel(ctx, skill, size) {
     const label = skill.name.length > 10 ? skill.name.slice(0, 9) + '…' : skill.name;
     ctx.font = `bold ${size * 0.13}px sans-serif`;
@@ -192,8 +200,7 @@ function drawLabel(ctx, skill, size) {
     ctx.fillText(label, size / 2, size - 10);
 }
 
-// Build a transparent canvas texture using a real loaded brand logo, recolored
-// to the skill's official brand color. No circle, no outline — just the mark.
+// Build a transparent canvas texture using a real loaded brand logo
 function makeLogoTexture(skill, img) {
     const size = 128;
     const canvas = document.createElement('canvas');
@@ -205,8 +212,6 @@ function makeLogoTexture(skill, img) {
     const logoX = (size - logoSize) / 2;
     const logoY = size / 2 - logoSize / 2 - 14;
 
-    // Simple Icons SVGs are monochrome black paths with no embedded brand
-    // color, so we draw the path then recolor it via source-in compositing.
     const off = document.createElement('canvas');
     off.width = size;
     off.height = size;
@@ -235,8 +240,6 @@ function loadLogoImage(slug) {
 }
 
 function createSkillNodes() {
-    // Place every skill on the sphere immediately using the instant emoji/canvas
-    // fallback texture, so the globe never waits on the network to render.
     const count = skillsData.length;
     const spriteBySkill = new Map();
 
@@ -259,15 +262,12 @@ function createSkillNodes() {
         spriteBySkill.set(skill, logoSprite);
     });
 
-    // Connections only depend on node positions, which are already final — build now.
     createConnections();
 
-    // Upgrade nodes with real, brand-colored logos from the CDN as they arrive,
-    // without blocking the initial render or repositioning anything.
     skillsData.forEach((skill) => {
-        if (!skill.slug) return; // no real-logo mapping for this skill, keep emoji fallback
+        if (!skill.slug) return;
         loadLogoImage(skill.slug).then((img) => {
-            if (!img) return; // CDN miss — silently keep the emoji fallback
+            if (!img) return;
             const sprite = spriteBySkill.get(skill);
             if (!sprite) return;
             const newTexture = makeLogoTexture(skill, img);
@@ -279,15 +279,12 @@ function createSkillNodes() {
 }
 
 function createConnections() {
-    // Create connections between all skill positions with category colors
     const geometry = new THREE.BufferGeometry();
     const positions = [];
     const colors = [];
 
-    // Get all skill sprite positions
     const skillSprites = particles.filter(p => p instanceof THREE.Sprite && p.userData && p.userData.skill);
 
-    // Connect each skill to every other skill
     for (let i = 0; i < skillSprites.length; i++) {
         for (let j = i + 1; j < skillSprites.length; j++) {
             const sprite1 = skillSprites[i];
@@ -296,11 +293,9 @@ function createConnections() {
             positions.push(sprite1.position.x, sprite1.position.y, sprite1.position.z);
             positions.push(sprite2.position.x, sprite2.position.y, sprite2.position.z);
 
-            // Get category colors for each skill
             const color1 = new THREE.Color(categoryColors[sprite1.userData.skill.category] || 0x64FFDA);
             const color2 = new THREE.Color(categoryColors[sprite2.userData.skill.category] || 0x64FFDA);
 
-            // Add colors for both endpoints
             colors.push(color1.r, color1.g, color1.b);
             colors.push(color2.r, color2.g, color2.b);
         }
@@ -320,6 +315,8 @@ function createConnections() {
     scene.add(connectionLines);
 }
 
+// ─── Mouse Handlers ───────────────────────────────────────────────────────────
+
 function onMouseMove(event) {
     const container = document.getElementById('skills-globe-container');
     if (!container) return;
@@ -332,18 +329,15 @@ function onMouseMove(event) {
     mouse.y = y;
 
     if (isDragging) {
-        // Calculate drag delta
         const deltaX = x - dragStart.x;
         const deltaY = y - dragStart.y;
 
-        // Apply reversed drag rotation (left-right normal, up-down reversed)
         dragRotation.y = deltaX * 3;
         dragRotation.x = -deltaY * 3;
 
         targetRotation.y = dragRotation.y;
         targetRotation.x = dragRotation.x;
     } else {
-        // Check for hovered skill using raycaster (check sprites)
         raycaster.setFromCamera(new THREE.Vector2(x, y), camera);
         const skillSprites = particles.filter(p => p instanceof THREE.Sprite && p.userData && p.userData.skill);
         const intersects = raycaster.intersectObjects(skillSprites);
@@ -362,6 +356,67 @@ function onMouseMove(event) {
         }
     }
 }
+
+function onMouseDown(event) {
+    const container = document.getElementById('skills-globe-container');
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    isDragging = true;
+    container.classList.add('grabbing');
+    dragStart.x = (event.clientX - rect.left) / rect.width * 2 - 1;
+    dragStart.y = -(event.clientY - rect.top) / rect.height * 2 + 1;
+}
+
+function onMouseUp(event) {
+    const container = document.getElementById('skills-globe-container');
+    if (container) {
+        container.classList.remove('grabbing');
+    }
+    isDragging = false;
+}
+
+// ─── Touch Handlers (Mobile Support) ─────────────────────────────────────────
+
+function onTouchStart(event) {
+    event.preventDefault();
+    const container = document.getElementById('skills-globe-container');
+    if (!container) return;
+
+    const touch = event.touches[0];
+    const rect = container.getBoundingClientRect();
+
+    isDragging = true;
+    dragStart.x = (touch.clientX - rect.left) / rect.width * 2 - 1;
+    dragStart.y = -(touch.clientY - rect.top) / rect.height * 2 + 1;
+}
+
+function onTouchMove(event) {
+    event.preventDefault();
+    const container = document.getElementById('skills-globe-container');
+    if (!container || !isDragging) return;
+
+    const touch = event.touches[0];
+    const rect = container.getBoundingClientRect();
+
+    const x = (touch.clientX - rect.left) / rect.width * 2 - 1;
+    const y = -(touch.clientY - rect.top) / rect.height * 2 + 1;
+
+    const deltaX = x - dragStart.x;
+    const deltaY = y - dragStart.y;
+
+    dragRotation.y = deltaX * 3;
+    dragRotation.x = -deltaY * 3;
+
+    targetRotation.y = dragRotation.y;
+    targetRotation.x = dragRotation.x;
+}
+
+function onTouchEnd(event) {
+    isDragging = false;
+}
+
+// ─── Tooltip ──────────────────────────────────────────────────────────────────
 
 function showTooltip(event, skill) {
     const container = document.getElementById('skills-globe-container');
@@ -385,24 +440,7 @@ function hideTooltip() {
     }
 }
 
-function onMouseDown(event) {
-    const container = document.getElementById('skills-globe-container');
-    if (!container) return;
-
-    const rect = container.getBoundingClientRect();
-    isDragging = true;
-    container.classList.add('grabbing');
-    dragStart.x = (event.clientX - rect.left) / rect.width * 2 - 1;
-    dragStart.y = -(event.clientY - rect.top) / rect.height * 2 + 1;
-}
-
-function onMouseUp(event) {
-    const container = document.getElementById('skills-globe-container');
-    if (container) {
-        container.classList.remove('grabbing');
-    }
-    isDragging = false;
-}
+// ─── Resize ───────────────────────────────────────────────────────────────────
 
 function onWindowResize() {
     const container = document.getElementById('skills-globe-container');
@@ -416,29 +454,26 @@ function onWindowResize() {
     renderer.setSize(width, height);
 }
 
+// ─── Animation Loop ───────────────────────────────────────────────────────────
+
 function animate() {
     requestAnimationFrame(animate);
 
-    // Smooth rotation following mouse
     currentRotation.x += (targetRotation.x - currentRotation.x) * 0.05;
     currentRotation.y += (targetRotation.y - currentRotation.y) * 0.05;
 
     globe.rotation.x = currentRotation.x;
     globe.rotation.y = currentRotation.y;
 
-    // Rotate all particles with globe
-    particles.forEach((particle, index) => {
+    particles.forEach((particle) => {
         if (particle.userData && particle.userData.originalPosition) {
-            // Apply same rotation as globe
             const pos = particle.userData.originalPosition.clone();
 
-            // Rotate around X axis
             const cosX = Math.cos(currentRotation.x);
             const sinX = Math.sin(currentRotation.x);
             let y = pos.y * cosX - pos.z * sinX;
             let z = pos.y * sinX + pos.z * cosX;
 
-            // Rotate around Y axis
             const cosY = Math.cos(currentRotation.y);
             const sinY = Math.sin(currentRotation.y);
             let x = pos.x * cosY + z * sinY;
@@ -448,12 +483,10 @@ function animate() {
         }
     });
 
-    // Auto rotate if no dragging
     if (!isDragging) {
         targetRotation.y += ROTATION_SPEED;
     }
 
-    // Update connection lines positions
     if (connectionLines) {
         const skillSprites = particles.filter(p => p instanceof THREE.Sprite && p.userData && p.userData.skill);
         const positions = [];
@@ -467,7 +500,6 @@ function animate() {
                 positions.push(sprite1.position.x, sprite1.position.y, sprite1.position.z);
                 positions.push(sprite2.position.x, sprite2.position.y, sprite2.position.z);
 
-                // Get category colors for each skill
                 const color1 = new THREE.Color(categoryColors[sprite1.userData.skill.category] || 0x64FFDA);
                 const color2 = new THREE.Color(categoryColors[sprite2.userData.skill.category] || 0x64FFDA);
 
@@ -486,6 +518,5 @@ function animate() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait a bit for other scripts to load
     setTimeout(initSkillsGlobe, 500);
 });
