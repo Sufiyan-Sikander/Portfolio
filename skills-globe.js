@@ -242,7 +242,7 @@ function createSkillNodes() {
             );
         }
 
-        tryLoad([logoPath, logoPath.replace(/\.png$/, '.svg'), cdnUrl]);
+        tryLoad([cdnUrl, logoPath, logoPath.replace(/\.png$/, '.svg')]);
     });
 
     function checkDone() {
