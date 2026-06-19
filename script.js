@@ -1,3 +1,11 @@
+// Hide the loading screen once the page is fully loaded
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loading-animation');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+});
+
 // Main script file
 console.log('Main script loaded');
 
