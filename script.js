@@ -44,23 +44,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroTitle = document.querySelector('.hero h2');
     const heroText = document.querySelector('.hero-text');
 
-    // Sequence the typing effects
+    // Show greeting, name, and summary instantly — no typing animation,
+    // so they never shift position or size.
     if (heroGreeting) {
-        typeEffect(heroGreeting, "Hello, I'm", 100);
+        heroGreeting.style.opacity = '1';
+        heroGreeting.textContent = "Hello, I'm";
     }
-    
     if (heroName) {
-        setTimeout(() => {
-            typeEffect(heroName, "Sufiyan Sikander", 100);
-        }, 1000);
+        heroName.style.opacity = '1';
+        heroName.textContent = "Sufiyan Sikander";
     }
-    
-    // Hero section animation: only h2 animates, hero-text appears after first h2 animation
+    if (heroText) {
+        heroText.style.opacity = '1';
+        heroText.textContent = "Building production-ready AI systems and intelligent applications using Generative AI, Large Language Models (LLMs), Agentic AI frameworks, RAG pipelines, and MCP-based tool integration. Focused on applied Machine Learning and real-world AI solutions.";
+    }
+
+    // Hero section animation: only the role (h2) cycles/types
     const texts = ["AI Engineer", "Full Stack AI Developer", "Data Scientist", "AI Automation"];
     let currentIndex = 0;
-
-    // Hide hero-text initially
-    if (heroText) heroText.style.opacity = '0';
 
     function typePhrase(phrase, i = 0, cb) {
         if (i === 0) heroTitle.textContent = '';
@@ -88,13 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     heroTitle.style.opacity = '1';
     heroTitle.style.transition = 'opacity 0.4s';
-    setTimeout(cycleTitle, 1000);
-    
-    if (heroText) {
-        setTimeout(() => {
-            typeEffect(heroText, "Building production-ready AI systems and intelligent applications using Generative AI, Large Language Models (LLMs), Agentic AI frameworks, RAG pipelines, and MCP-based tool integration. Focused on applied Machine Learning and real-world AI solutions.", 50);
-        }, 3000);
-    }
+    setTimeout(cycleTitle, 500);
     
     // Mobile menu functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
