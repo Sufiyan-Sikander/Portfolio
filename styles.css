@@ -3005,8 +3005,8 @@ button:hover, a:hover {
 
 .hero-photo-wrap {
     position: relative;
-    width: 200px;   /* smaller on desktop */
-    height: 200px;
+    width: 250px;   
+    height: 250px;
     flex-shrink: 0;
     margin-top: 5rem;
 }
