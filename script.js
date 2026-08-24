@@ -477,7 +477,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 200);
 
+    // Lazy load non-critical resources only if not already present.
+    // These files are already included in HTML, so this guard prevents
+    // duplicate script execution and redeclaration errors.
+    const lazyLoadResources = () => {
+        const ensureScript = (src) => {
+            const exists = document.querySelector(`script[src="${src}"]`);
+            if (exists) return;
 
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            document.body.appendChild(script);
+        };
+
+        ensureScript('matrix-rain.js');
+        ensureScript('particle-effects.js');
+        ensureScript('logo-animation.js');
+    };
+
+    // Load non-critical resources after initial page load
+    window.addEventListener('load', lazyLoadResources);
+});
 
 // ─── Theme Toggle with Keyboard Support ────────────────────────────────────
 // Wrapped in DOMContentLoaded so the element exists before we query it
