@@ -490,27 +490,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Mobile Menu with Keyboard Support
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-mobileMenuToggle.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMobileMenu();
-    }
-});
-
-// Handle keyboard navigation in mobile menu
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            toggleMobileMenu();
-        }
-    });
-});
-
 // Smooth Scrolling with Keyboard Support
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
