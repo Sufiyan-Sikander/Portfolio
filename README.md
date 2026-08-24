@@ -21,7 +21,7 @@ This is my personal portfolio website showcasing my projects, skills, and profes
 - Google Fonts
 
 ## Live Demo
-Visit the live website: [Portfolio](https://iammuhammadfurqan.github.io/portfolio)
+Visit the live website: [Portfolio](https://sufiyanportfolio-psi.vercel.app/home.html)
 
 ## Local Development
 To run this project locally:
