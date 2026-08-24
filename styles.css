@@ -3013,7 +3013,7 @@ button:hover, a:hover {
 
 @media (max-width: 768px) {
     .hero-photo-wrap {
-        margin-top: 8rem; /* change this to whatever looks right on mobile */
+        margin-top: 12rem; /* change this to whatever looks right on mobile */
     }
 }
 
