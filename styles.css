@@ -3011,12 +3011,6 @@ button:hover, a:hover {
     margin-top: 5rem;
 }
 
-@media (max-width: 768px) {
-    .hero-photo-wrap {
-        margin-top: 12rem; /* change this to whatever looks right on mobile */
-    }
-}
-
 
 .hero-photo-ring {
     position: absolute;
@@ -3048,8 +3042,9 @@ button:hover, a:hover {
         gap: 2rem;
     }
     .hero-photo-wrap {
-        width: 250px;
-        height: 250px;
+        margin-top: 7rem;
+        width: 160px;
+        height: 160px;
     }
 }
 
