@@ -474,30 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 200);
 
-    // Lazy load non-critical resources
-    const lazyLoadResources = () => {
-        // Load matrix rain effect
-        const matrixScript = document.createElement('script');
-        matrixScript.src = 'matrix-rain.js';
-        matrixScript.async = true;
-        document.body.appendChild(matrixScript);
-
-        // Load particle effects
-        const particleScript = document.createElement('script');
-        particleScript.src = 'particle-effects.js';
-        particleScript.async = true;
-        document.body.appendChild(particleScript);
-
-        // Load logo animation
-        const logoScript = document.createElement('script');
-        logoScript.src = 'logo-animation.js';
-        logoScript.async = true;
-        document.body.appendChild(logoScript);
-    };
-
-    // Load non-critical resources after initial page load
-    window.addEventListener('load', lazyLoadResources);
-});
 
 // ─── Theme Toggle with Keyboard Support ────────────────────────────────────
 // Wrapped in DOMContentLoaded so the element exists before we query it
