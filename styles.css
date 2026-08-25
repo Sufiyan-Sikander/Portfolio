@@ -299,6 +299,18 @@ p {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+        padding-bottom: 3rem;
+    }
+}
+
+
+
+
 .hero::before {
     content: '';
     position: absolute;
@@ -310,6 +322,7 @@ p {
     border-radius: 50%;
     animation: pulse 4s infinite alternate;
 }
+
 
 .hero::after {
     content: '';
