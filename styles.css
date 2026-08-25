@@ -3034,7 +3034,7 @@ button:hover, a:hover {
 
 @media (max-width: 768px) {
     .hero-photo-wrap {
-        margin-top: -2rem; /* change this to whatever looks right on mobile */
+        margin-top: 0.5rem; /* change this to whatever looks right on mobile */
     }
 }
 
