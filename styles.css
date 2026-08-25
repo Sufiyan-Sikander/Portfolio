@@ -23,6 +23,8 @@
     --matrix-bg: rgba(10, 25, 47, 0.05);
     --matrix-text: #64ffda;
     --particle-color: rgba(100, 255, 218, 0.5);
+    --secondary-color-glow: rgba(100, 255, 218, 0.5);
+    --secondary-color-glow-soft: rgba(100, 255, 218, 0.2);
 }
 
 :root[data-theme="light"] {
@@ -42,6 +44,15 @@
     --matrix-bg: rgba(240, 244, 248, 0.05);
     --matrix-text: #0066cc;
     --particle-color: rgba(0, 102, 204, 0.5);
+    --secondary-color-glow: rgba(0, 102, 204, 0.45);
+    --secondary-color-glow-soft: rgba(0, 102, 204, 0.2);
+    --ring-color-strong: #0052a3;
+}
+
+[data-theme="light"] .hero-photo-ring {
+    border-width: 2px;
+    border-color: var(--ring-color-strong);
+    opacity: 0.75;
 }
 
 body {
@@ -411,6 +422,7 @@ p {
 }
 
 .tech-stack-hero span {
+    display: inline-block;
     background: rgba(100, 255, 218, 0.1);
     color: var(--secondary-color);
     padding: 0.3rem 0.8rem;
@@ -418,6 +430,15 @@ p {
     font-size: 0.9rem;
     border: 1px solid rgba(100, 255, 218, 0.2);
     font-family: 'Fira Code', monospace;
+    transition: transform 0.25s ease;
+    cursor: default;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tech-stack-hero span:hover,
+.tech-stack-hero span:active {
+    transform: translateY(-4px) scale(1.05);
 }
 
 .hero-decoration {
@@ -3005,10 +3026,16 @@ button:hover, a:hover {
 
 .hero-photo-wrap {
     position: relative;
-    width: 250px;   
+    width: 250px;
     height: 250px;
     flex-shrink: 0;
     margin-top: 5rem;
+}
+
+@media (max-width: 768px) {
+    .hero-photo-wrap {
+        margin-top: -2rem; /* change this to whatever looks right on mobile */
+    }
 }
 
 
@@ -3016,7 +3043,8 @@ button:hover, a:hover {
     position: absolute;
     inset: -18px;
     border-radius: 50%;
-    border: 1px dashed rgba(100, 255, 218, 0.4);
+    border: 1px dashed var(--secondary-color);
+    opacity: 0.4;
     animation: spin-slow 20s linear infinite;
 }
 
@@ -3032,7 +3060,8 @@ button:hover, a:hover {
     object-fit: cover;
     object-position: center 70%;
     border: 3px solid var(--secondary-color);
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.4), 0 0 60px rgba(100, 255, 218, 0.15);
+    box-shadow: 0 0 30px var(--secondary-color-glow, rgba(100, 255, 218, 0.4)),
+                0 0 60px var(--secondary-color-glow-soft, rgba(100, 255, 218, 0.15));
 }
 
 @media (max-width: 768px) {
@@ -3042,9 +3071,8 @@ button:hover, a:hover {
         gap: 2rem;
     }
     .hero-photo-wrap {
-        margin-top: 6rem;
-        width: 160px;
-        height: 160px;
+        width: 250px;
+        height: 250px;
     }
 }
 
